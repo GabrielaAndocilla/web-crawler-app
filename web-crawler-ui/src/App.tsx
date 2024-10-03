@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './App.css';
+import PostList from './pages/PostsList';
 
 function App() {
-  const getPage = () => {};
-  useEffect(() => {
-    getPage();
-  }, []);
+  const queryClient = new QueryClient();
 
-  return <div className="App">staart</div>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <PostList />
+    </QueryClientProvider>
+  );
 }
 
 export default App;
