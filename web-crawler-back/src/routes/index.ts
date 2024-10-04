@@ -1,9 +1,9 @@
 import { Application } from "express";
-import routes from "./api.routes";
+import postRoutes from "./posts.routes";
 
 export default class Routes {
   constructor(app: Application) {
-    app.use("/api", routes);
+    app.use("/api", postRoutes);
 
   }
 }

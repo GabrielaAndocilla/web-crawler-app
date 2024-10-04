@@ -1,4 +1,4 @@
-import StartController from "@controllers/StartController";
+import StartController from "@controllers/PostsController";
 
 import { Router } from "express";
 

@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 import { Builder, By } from 'selenium-webdriver';
 import chrome, { Options } from 'selenium-webdriver/chrome';
-export default class StartController {
+export default class PostsController {
   options:Options
 
   constructor() {
