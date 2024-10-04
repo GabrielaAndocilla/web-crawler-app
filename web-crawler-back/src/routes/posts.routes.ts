@@ -1,10 +1,10 @@
-import StartController from "@controllers/PostsController";
+import PostsController from "@controllers/PostsController";
 
 import { Router } from "express";
 
 class ApiRoutes {
   router = Router()
-  controller = new StartController();
+  controller = new PostsController();
 
   constructor(){
     this.initializedRoutes()

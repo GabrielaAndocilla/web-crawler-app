@@ -2,15 +2,15 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '..';
 
-interface UserInteractionAttributes {
-  id?: number;
-  page_number: string;
-  title_words_limit: string;
-  filter_type: string;
+  export interface UserInteractionAttributes {
+    id?: number;
+    page_number: string;
+    title_words_limit: string;
+    filter_type: string;
 
-  updatedAt?: Date;
-  createdAt?: Date;
-}
+    updatedAt?: Date;
+    createdAt?: Date;
+  }
   class UserInteraction extends Model<UserInteractionAttributes> implements UserInteractionAttributes {
     public id!: number;
     public page_number!: string;
