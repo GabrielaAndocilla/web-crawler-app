@@ -16,14 +16,17 @@ export default class StartController {
 
   getPage = async (req: Request, res: Response) =>{
 
-    const {type, limit} = req.query;
+    const {page,type, limit} = req.query;
 
     const driver = await new Builder().forBrowser('chrome')
     .setChromeOptions(this.options )
     .build();
-    await driver.get('https://news.ycombinator.com/?p=2');
+    let url = 'https://news.ycombinator.com'
+    if(page) url += `?p=${page}`
+    await driver.get(url);
     const allElements = await driver.findElements(By.css('#hnmain > tbody > tr:nth-child(3) tbody > tr'));
     const results = await Promise.all(allElements.map(async (post,index) =>  await post.getText()));
+    await driver.quit();
     const clearData = results.filter(text => text !== '' && text !== 'More')
     let newPost :Post ={}
     let posts:Post[] = []
