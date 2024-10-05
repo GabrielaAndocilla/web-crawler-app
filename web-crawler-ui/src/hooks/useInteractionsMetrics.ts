@@ -7,6 +7,5 @@ export const useInteractionMetrics = () => {
     queryKey:['metrics'],
     queryFn: () => axios.get(`${url}/interactions/metrics`),
     placeholderData: keepPreviousData,
-    staleTime: Infinity,
   })
 }

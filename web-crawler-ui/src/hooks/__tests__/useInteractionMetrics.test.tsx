@@ -3,7 +3,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import { ReactNode } from 'react';
 import { useInteractionMetrics } from '../useInteractionsMetrics';
-import { interactions } from './__mocks__/userInteractionMetrics';
+import { interactions } from './__mocks__/interactions';
 
 jest.mock('axios', () => ({
   get: jest.fn(),
