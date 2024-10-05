@@ -10,7 +10,7 @@ const config: Config = {
     '^@domains/(.*)$': '<rootDir>/src/domain/$1',
     '^@infrastructure/(.*)$': '<rootDir>/src/infrastructure/$1',
     '^@controllers/(.*)$': '<rootDir>/src/infrastructure/controllers/$1',
-    '^@repositories/(.*)$': '<rootDir>/src/infrastructure/repositories/$1',
+    '^@repositories/(.*)$': '<rootDir>/src/infrastructure/repositories/$1'
   },
   transform: {
     '^.+\\.tsx?$': 'ts-jest',

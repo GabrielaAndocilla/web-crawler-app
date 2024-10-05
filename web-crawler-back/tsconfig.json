@@ -22,7 +22,7 @@
       "@infrastructure/*": ["infrastructure/*"],
       "@controllers/*": ["infrastructure/controllers/*"],
       "@repositories/*": ["infrastructure/repositories/*"]
-    },
+    }
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
