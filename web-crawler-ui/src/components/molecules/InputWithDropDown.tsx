@@ -53,7 +53,7 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
         text="Filter the posts by number of words of the title as you like"
       />
       <div className="relative mt-2 rounded-md shadow-sm">
-        <div className="absolute inset-y-0  flex items-center">
+        <div className="absolute inset-y-0 flex items-center">
           <label htmlFor="filterType" className="sr-only">
             filter
           </label>
@@ -70,7 +70,7 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
           value={inputValue}
           onChange={handleChange}
           name="input--filter"
-          className="right-0 pl-32"
+          className="right-0 pl-44 "
         />
       </div>
       <p className="mt-3 text-sm leading-6 text-red-400">{error}</p>
