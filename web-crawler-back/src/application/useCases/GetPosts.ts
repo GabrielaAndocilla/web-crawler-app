@@ -13,7 +13,7 @@ export class GetPosts {
     }[type!] as keyof Post
     const filteredPosts = posts.filter(({ title }) => {
       if (!title) return 0;
-      const cleanTitle = title.replace(/[^a-zA-Z0-9\s]/g, '');
+      const cleanTitle = title.replace(/[^a-zA-Z0-9\s]/g, '').trim();
       if (type === 'moreThan')
         return cleanTitle.split(/\s+/).length > parseInt(limit as string);
       if (type === 'lessThan')
