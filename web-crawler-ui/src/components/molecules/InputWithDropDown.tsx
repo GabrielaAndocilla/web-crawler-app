@@ -1,4 +1,4 @@
-import { ChangeEventHandler, HTMLAttributes, InputHTMLAttributes, useState } from 'react';
+import { ChangeEventHandler, InputHTMLAttributes, useState } from 'react';
 import { ERROR_MESSAGE_INPUT_DROPDOWN } from '../../constants/errorMessages';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
