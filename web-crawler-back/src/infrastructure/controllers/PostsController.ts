@@ -63,8 +63,8 @@ export default class PostsController {
     };
     const description = text.match(descriptionPostReges);
     if (!description?.length) return defaultDescription;
-    const points = description[1];
-    const quantityOfComments = description[2];
+    const points = description[1] || '0';
+    const quantityOfComments = description[2] || '0';
     return { points, quantityOfComments };
   };
 

@@ -2,6 +2,7 @@ import { UserInteraction } from "@domains/entities/UserInteraction";
 import IUserInteractionRepository from "@domains/repositories/IUserInteractionRepository";
 import sequelize from "@infrastructure/db";
 import UserInteractionDB, { LimitWordMetric, PageMetrics, TypeMetrics, UserInteractionAttributes } from "@infrastructure/db/models/userInteraction";
+import { Op } from "sequelize";
 
 
 
@@ -40,6 +41,11 @@ class UserInteractionMySql implements IUserInteractionRepository{
     return await LimitWordMetric.findAll({
       attributes: ['title_words_limit', [sequelize.fn('COUNT', sequelize.col('id')), 'quantity']],
       group: ['title_words_limit'],
+      where: {
+          title_words_limit:{
+            [Op.not]: 'null'
+          }
+      },
       raw:true
     })
   }
@@ -48,6 +54,11 @@ class UserInteractionMySql implements IUserInteractionRepository{
     return await TypeMetrics.findAll({
       attributes: ['filter_type', [sequelize.fn('COUNT', sequelize.col('id')), 'quantity']],
       group: ['filter_type'],
+      where: {
+        filter_type:{
+          [Op.not]: 'null'
+        }
+    },
       raw:true
     })
   }

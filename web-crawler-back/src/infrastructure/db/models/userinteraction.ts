@@ -50,11 +50,11 @@ import sequelize from '..';
       type: DataTypes.STRING,
     },
     title_words_limit: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.STRING,
     },
     filter_type: {
-      allowNull: false,
+      allowNull: true,
       unique: true,
       type: DataTypes.STRING,
     },
