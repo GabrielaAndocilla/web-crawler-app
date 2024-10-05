@@ -1,4 +1,4 @@
-const Label = ({ text, idFor }: { text: string; idFor: string }) => {
+const Label = ({ text, idFor }: { text: string; idFor?: string }) => {
   return (
     <label
       htmlFor={idFor}
@@ -9,4 +9,4 @@ const Label = ({ text, idFor }: { text: string; idFor: string }) => {
   );
 };
 
-export default Label
+export default Label;
