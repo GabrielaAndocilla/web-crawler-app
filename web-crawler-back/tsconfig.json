@@ -19,6 +19,7 @@
     "paths": {
       "@useCases/*": ["application/useCases/*"],
       "@domains/*": ["domain/*"],
+      "@infrastructure/*": ["infrastructure/*"],
       "@controllers/*": ["infrastructure/controllers/*"],
       "@repositories/*": ["infrastructure/repositories/*"]
     },
