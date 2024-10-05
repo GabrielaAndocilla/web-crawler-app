@@ -1,6 +1,6 @@
 import { SelectHTMLAttributes } from 'react';
 
-const SelectorInput = <T extends Record<string, string | number>>({
+const DropDown = <T extends Record<string, string | number>>({
   options,
   keyOption,
   valueOption = keyOption,
@@ -23,4 +23,4 @@ const SelectorInput = <T extends Record<string, string | number>>({
     </select>
   );
 };
-export default SelectorInput;
+export default DropDown;

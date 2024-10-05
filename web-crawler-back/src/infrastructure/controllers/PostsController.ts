@@ -28,7 +28,7 @@ export default class PostsController {
       .setChromeOptions(this.setChromeOptions())
       .build();
 
-  private getElementsPage = async (url: string): Promise<string[]> => {
+  private getPageElements = async (url: string): Promise<string[]> => {
     const driver = await this.createCrawlerDriver();
     try {
       await driver.get(url);
@@ -38,12 +38,11 @@ export default class PostsController {
       );
       return posts;
     } catch (error) {
-      console.error('Error - getElementsPage', error)
+      console.error('Error - getPageElements', error)
       return[]
     } finally{
       await driver.quit();
     }
-
   };
 
   private isAValidText = (text: string) => text !== '' && text !== 'More';
@@ -88,7 +87,7 @@ export default class PostsController {
     const { page } = req.query;
     let url = process.env.NEWS_URL || '';
     if (page) url += `?p=${page}`;
-    const elements = await this.getElementsPage(url);
+    const elements = await this.getPageElements(url);
     if(!elements.length) res.status(503).json({message:'There was an error getting elements'})
     const posts = this.transformPageElementsToModel(elements);
     const getPostsByFilter = new GetPosts();

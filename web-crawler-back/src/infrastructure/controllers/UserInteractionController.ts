@@ -5,7 +5,6 @@ import { GetAllInteractions } from "@useCases/GetAllInteractions";
 import { GetMetrics } from "@useCases/GetMetrics";
 import { Request, Response } from "express";
 
-
 export default class UserInteractionController {
   private userInteractionRepo: IUserInteractionRepository;
 
@@ -13,7 +12,7 @@ export default class UserInteractionController {
     this.userInteractionRepo = userInteractionRepo;
   }
 
-  getInteractions = async (req: Request, res: Response) =>{
+  getInteractions = async (_req: Request, res: Response) =>{
     try {
       const getAll = new GetAllInteractions(this.userInteractionRepo)
       const values : UserInteraction[] = await getAll.execute()
@@ -25,7 +24,7 @@ export default class UserInteractionController {
     }
   }
 
-  getMetrics = async (req: Request, res: Response) =>{
+  getMetrics = async (_req: Request, res: Response) =>{
     try {
       const getMetrics = new GetMetrics(this.userInteractionRepo)
       const metrics = await getMetrics.execute()

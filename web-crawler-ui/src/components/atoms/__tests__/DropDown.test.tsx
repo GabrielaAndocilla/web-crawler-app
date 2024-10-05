@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Selector from '../Selector';
+import DropDown from '../DropDown';
 
-describe('Selector Component', () => {
+describe('DropDown Component', () => {
   it('should show options and enable selection', async () => {
     const { getByRole, getAllByRole } = render(
-      <Selector
+      <DropDown
         options={[
           { name: 'option 1', value: 'option1' },
           { name: 'option 2', value: 'option2' },

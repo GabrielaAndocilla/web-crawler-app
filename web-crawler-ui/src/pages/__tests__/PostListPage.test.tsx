@@ -49,7 +49,7 @@ describe('Post List Page', () => {
     const { getByText, getByTestId, getAllByTestId, getByRole } = render(
       <PostListPage />
     );
-    //test Metics section
+    //test Metrics section
     expect(getByText('Application Metrics')).toBeDefined();
     expect(getByTestId('page_metric_2')).toBeDefined();
     expect(getByTestId('title_metric_5')).toBeDefined();

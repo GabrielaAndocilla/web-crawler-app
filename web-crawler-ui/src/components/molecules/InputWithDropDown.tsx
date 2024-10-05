@@ -1,8 +1,18 @@
 import { ChangeEventHandler, InputHTMLAttributes, useState } from 'react';
 import { ERROR_MESSAGE_INPUT_DROPDOWN } from '../../constants/errorMessages';
+import { NO_VALID_DROPDOWN_VALUES } from '../../constants/noValidValues';
+import DropDown from '../atoms/DropDown';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
-import SelectorInput from '../atoms/Selector';
+
+interface InputWithDropDownProps<T> {
+  options: T[];
+  keyOption: keyof T;
+  valueOption?: keyof T;
+  onUserSelect: (inputValue: string, selectValue: string) => void;
+  errorMessage?: string;
+  inputOptions?: InputHTMLAttributes<HTMLInputElement>;
+}
 
 const InputWithDropDown = <T extends Record<string, string | number>>({
   options,
@@ -11,16 +21,9 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
   onUserSelect,
   errorMessage,
   inputOptions,
-}: {
-  options: T[];
-  keyOption: keyof T;
-  valueOption?: keyof T;
-  onUserSelect: (inputValue: string, selectValue: string) => void;
-  errorMessage?: string;
-  inputOptions?: InputHTMLAttributes<HTMLInputElement>;
-}) => {
+}: InputWithDropDownProps<T>) => {
   const [inputValue, setInputValue] = useState('');
-  const [selectorValue, setSelectorValue] = useState('');
+  const [dropDownValue, setDropDownValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange: ChangeEventHandler<
@@ -29,12 +32,12 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
     const { name, value } = event.target;
     const newValues = {
       inputValue: name === 'input--filter' ? value : inputValue,
-      selectorValue: name === 'selector--filter' ? value : selectorValue,
+      selectorValue: name === 'selector--filter' ? value : dropDownValue,
     };
-    name === 'input--filter' ? setInputValue(value) : setSelectorValue(value);
+    name === 'input--filter' ? setInputValue(value) : setDropDownValue(value);
     if (
       newValues.inputValue === '' ||
-      ['None', ''].includes(newValues.selectorValue)
+      NO_VALID_DROPDOWN_VALUES.includes(newValues.selectorValue)
     ) {
       setError(errorMessage || ERROR_MESSAGE_INPUT_DROPDOWN);
       return;
@@ -54,10 +57,10 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
           <label htmlFor="filterType" className="sr-only">
             filter
           </label>
-          <SelectorInput
+          <DropDown
             id="selector--filter"
             name="selector--filter"
-            value={selectorValue}
+            value={dropDownValue}
             onChange={handleChange}
             {...{ options, keyOption, valueOption }}
           />

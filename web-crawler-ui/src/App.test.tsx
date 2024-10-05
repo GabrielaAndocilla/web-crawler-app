@@ -4,7 +4,7 @@ import App from './App';
 
 jest.mock('axios', () => ({}));
 
-test('renders learn react link', () => {
+test('render App', () => {
   const queryClient = new QueryClient();
   const { baseElement } = render(
     <QueryClientProvider client={queryClient}>
