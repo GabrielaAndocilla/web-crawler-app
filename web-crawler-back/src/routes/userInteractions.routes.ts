@@ -1,10 +1,12 @@
 import UserInteractionController from "@controllers/UserInteractionController";
+import UserInteractionMySql from "@repositories/UserInteractionRepository";
 
 import { Router } from "express";
 
 class ApiRoutes {
   router = Router()
-  controller = new UserInteractionController();
+  repository = new UserInteractionMySql()
+  controller = new UserInteractionController(this.repository);
 
   constructor(){
     this.initializedRoutes()

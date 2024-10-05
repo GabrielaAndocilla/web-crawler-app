@@ -11,6 +11,7 @@ import sequelize from '..';
     updatedAt?: Date;
     createdAt?: Date;
   }
+
   class UserInteraction extends Model<UserInteractionAttributes> implements UserInteractionAttributes {
     public id!: number;
     public page_number!: string;
@@ -22,6 +23,20 @@ import sequelize from '..';
 
   }
 
+  export class PageMetrics extends UserInteraction{
+    public page_number!: string;
+    public quantity!: number;
+  }
+  export class LimitWordMetric extends UserInteraction{
+    public title_words_limit!: string;
+    public quantity!: number;
+  }
+
+  export class TypeMetrics extends UserInteraction{
+    public filter_type!: string;
+    public quantity!: number;
+
+  }
 
   UserInteraction.init(  {
     id: {

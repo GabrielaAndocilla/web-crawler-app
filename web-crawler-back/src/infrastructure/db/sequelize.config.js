@@ -1,6 +1,5 @@
 require('ts-node/register');
 const config = require('./config');
-console.log(config.user)
 module.exports = {
   username: config.default.user,
   password: config.default.password,

@@ -1,50 +1,54 @@
 import { UserInteraction } from "@domains/entities/UserInteraction";
+import IUserInteractionRepository from "@domains/repositories/IUserInteractionRepository";
+import { CreateInteraction } from "@useCases/CreateInteraction";
+import { GetAllInteractions } from "@useCases/GetAllInteractions";
+import { GetMetrics } from "@useCases/GetMetrics";
 import { Request, Response } from "express";
-import sequelize from "infrastructure/db";
-import UserInteractionDB, { UserInteractionAttributes } from "infrastructure/db/models/userInteraction";
 
 
-export default class PostsController {
+export default class UserInteractionController {
+  private userInteractionRepo: IUserInteractionRepository;
 
-  constructor() {
+  constructor(userInteractionRepo: IUserInteractionRepository) {
+    this.userInteractionRepo = userInteractionRepo;
   }
 
   getInteractions = async (req: Request, res: Response) =>{
-    res.send(await UserInteractionDB.findAll())
+    try {
+      const getAll = new GetAllInteractions(this.userInteractionRepo)
+      const values : UserInteraction[] = await getAll.execute()
+      res.status(200).json(values)
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal Server Error!"
+      });
+    }
   }
 
   getMetrics = async (req: Request, res: Response) =>{
-    const pageMetrics = await UserInteractionDB.findAll({
-      attributes: ['UserInteraction.page_number', [sequelize.fn('COUNT', sequelize.col('UserInteraction.id')), 'quantity']],
-      group: ['UserInteraction.page_number'],
-      raw:true
-    })
-    const limitWordsMetrics = await UserInteractionDB.findAll({
-      attributes: ['UserInteraction.title_words_limit', [sequelize.fn('COUNT', sequelize.col('UserInteraction.id')), 'quantity']],
-      group: ['UserInteraction.title_words_limit'],
-      raw:true
-    })
-    const typeMetrics = await UserInteractionDB.findAll({
-      attributes: ['UserInteraction.filter_type', [sequelize.fn('COUNT', sequelize.col('UserInteraction.id')), 'quantity']],
-      group: ['UserInteraction.filter_type'],
-      raw:true
-    })
-
-    res.status(200).json({pageMetrics,limitWordsMetrics,typeMetrics})
+    try {
+      const getMetrics = new GetMetrics(this.userInteractionRepo)
+      const metrics = await getMetrics.execute()
+      res.status(200).json(metrics)
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal Server Error!"
+      });
+    }
   }
 
   insertInteraction = async (req: Request, res: Response) =>{
-    const { id, pageNumber, titleWords, filterType } = req.body
-    const interaction: UserInteractionAttributes = {
-      id,
-      page_number:pageNumber,
-      title_words_limit:titleWords,
-      filter_type: filterType
+    try {
+      const { id, pageNumber, titleWords, filterType } = req.body
+      const create = new CreateInteraction(this.userInteractionRepo);
+      const interaction = await create.execute({ id, pageNumber, titleWords, filterType })
+      res.status(200).json(interaction)
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal Server Error!"
+      });
     }
-    const userInteraction = UserInteractionDB.build(interaction)
-    await userInteraction.save()
-    const newUserInteraction = new UserInteraction(userInteraction.id,userInteraction.page_number,userInteraction.title_words_limit,userInteraction.filter_type)
-    res.status(200).json(newUserInteraction)
+
   }
 
 
