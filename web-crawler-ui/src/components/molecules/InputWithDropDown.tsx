@@ -1,4 +1,5 @@
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, HTMLAttributes, InputHTMLAttributes, useState } from 'react';
+import { ERROR_MESSAGE_INPUT_DROPDOWN } from '../../constants/errorMessages';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
 import SelectorInput from '../atoms/Selector';
@@ -8,11 +9,15 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
   keyOption,
   valueOption = keyOption,
   onUserSelect,
+  errorMessage,
+  inputOptions,
 }: {
   options: T[];
   keyOption: keyof T;
   valueOption?: keyof T;
   onUserSelect: (inputValue: string, selectValue: string) => void;
+  errorMessage?: string;
+  inputOptions?: InputHTMLAttributes<HTMLInputElement>;
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [selectorValue, setSelectorValue] = useState('');
@@ -31,7 +36,7 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
       newValues.inputValue === '' ||
       ['None', ''].includes(newValues.selectorValue)
     ) {
-      setError('To filter, please select the type and fill the input');
+      setError(errorMessage || ERROR_MESSAGE_INPUT_DROPDOWN);
       return;
     }
     setError('');
@@ -58,12 +63,10 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
           />
         </div>
         <Input
+          {...inputOptions}
           value={inputValue}
           onChange={handleChange}
-          min={0}
-          type="number"
           name="input--filter"
-          placeholder="Number of words, ex: 5"
           className="right-0 pl-32"
         />
       </div>

@@ -4,8 +4,6 @@ import sequelize from "@infrastructure/db";
 import UserInteractionDB, { LimitWordMetric, PageMetrics, TypeMetrics, UserInteractionAttributes } from "@infrastructure/db/models/userInteraction";
 import { Op } from "sequelize";
 
-
-
 class UserInteractionMySql implements IUserInteractionRepository{
 
   constructor(){ }

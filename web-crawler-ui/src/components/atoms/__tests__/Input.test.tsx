@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import Input from '../Input';
 
 describe('Input Component', () => {
-  it('should render Input', async () => {
+  it('should render Input', () => {
     const typeFunction = jest.fn();
     const { getByRole } = render(
       <Input
@@ -15,7 +15,7 @@ describe('Input Component', () => {
     );
     const input = getByRole('textbox');
     expect(input).toBeDefined();
-    await userEvent.type(input, 'aa');
+    userEvent.type(input, 'aa');
     expect(typeFunction).toHaveBeenCalled();
   });
 });
