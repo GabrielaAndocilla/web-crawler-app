@@ -11,6 +11,5 @@ export const usePost = (page?:number, filters?:{limit?:string|undefined, type?:s
     queryFn: () => axios.get(url),
     placeholderData: keepPreviousData,
     staleTime: Infinity,
-
   })
 }

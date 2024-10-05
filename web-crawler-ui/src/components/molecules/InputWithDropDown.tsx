@@ -22,7 +22,6 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
     HTMLInputElement | HTMLSelectElement
   > = (event) => {
     const { name, value } = event.target;
-    console.log('aaaa', name, value);
     const newValues = {
       inputValue: name === 'input--filter' ? value : inputValue,
       selectorValue: name === 'selector--filter' ? value : selectorValue,
@@ -32,7 +31,7 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
       newValues.inputValue === '' ||
       ['None', ''].includes(newValues.selectorValue)
     ) {
-      setError('If you want to filter select both if not it will show all');
+      setError('To filter, please select the type and fill the input');
       return;
     }
     setError('');
@@ -61,13 +60,14 @@ const InputWithDropDown = <T extends Record<string, string | number>>({
         <Input
           value={inputValue}
           onChange={handleChange}
+          min={0}
           type="number"
           name="input--filter"
           placeholder="Number of words, ex: 5"
           className="right-0 pl-32"
         />
       </div>
-      <p>{error}</p>
+      <p className="mt-3 text-sm leading-6 text-red-400">{error}</p>
     </div>
   );
 };
