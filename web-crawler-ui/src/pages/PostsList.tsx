@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import Button from '../components/atoms/Button';
 import Title from '../components/atoms/Title';
+import InputWithDropDown from '../components/molecules/InputWithDropDown';
 import ListElement from '../components/molecules/ListElement';
 import { usePost } from '../hooks/usePosts';
 import { Post } from '../models/Post';
 
 const PostList = () => {
   const [page, setPage] = useState<number | undefined>(undefined);
-  const { data } = usePost(page);
+  const [filters, setFilters] = useState<{ limit?: string; type?: string }>({});
+  const { data } = usePost(page, filters);
   const posts = data?.data || [];
 
   const previousPage = (page: number | undefined) =>
@@ -15,6 +17,20 @@ const PostList = () => {
   return (
     <>
       <Title text="Posts" />
+      <div>
+        <InputWithDropDown
+          options={[
+            { name: 'None', value: 'None' },
+            { name: 'Less Than', value: 'lessThan' },
+            { name: 'More Than', value: 'moreThan' },
+          ]}
+          keyOption="name"
+          valueOption="value"
+          onUserSelect={(limit, type) => {
+            if (limit && type) setFilters({ limit, type });
+          }}
+        />
+      </div>
       <div className="m-4">
         <ul role="list" className="divide-y divide-gray-100">
           {posts.map(({ id, title, points, quantityOfComments }: Post) => (
