@@ -1,4 +1,4 @@
-import { Post } from '@domains/entities/Posts';
+import { Post } from '@domains/entities/Post';
 import { GetPosts } from '@useCases/GetPosts';
 import { Request, Response } from 'express';
 

@@ -37,7 +37,7 @@ const PostListPage = () => {
         <InputWithDropDown
           options={[
             { name: 'None', value: 'None' },
-            { name: 'Less Than', value: 'lessThan' },
+            { name: 'Less Than or Equal', value: 'lessThan' },
             { name: 'More Than', value: 'moreThan' },
           ]}
           keyOption="name"

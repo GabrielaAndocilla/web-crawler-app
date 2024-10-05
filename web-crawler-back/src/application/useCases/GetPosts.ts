@@ -1,4 +1,4 @@
-import { Post } from "@domains/entities/Posts";
+import { Post } from "@domains/entities/Post";
 
 export class GetPosts {
 
