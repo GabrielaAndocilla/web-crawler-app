@@ -11,7 +11,7 @@ class ApiRoutes {
   }
 
   initializedRoutes(){
-    this.router.get("/posts",this.controller.getPage);
+    this.router.get("/posts",this.controller.getPostInfo);
 
   }
 }
