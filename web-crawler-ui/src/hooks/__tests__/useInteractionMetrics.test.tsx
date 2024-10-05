@@ -2,8 +2,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import { ReactNode } from 'react';
+import { interactions } from '../../__mocks__/interactions';
 import { useInteractionMetrics } from '../useInteractionsMetrics';
-import { interactions } from './__mocks__/interactions';
 
 jest.mock('axios', () => ({
   get: jest.fn(),

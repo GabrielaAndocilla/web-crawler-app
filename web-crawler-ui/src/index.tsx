@@ -9,7 +9,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <body>
+      <main>
+        <App />
+      </main>
+    </body>
   </React.StrictMode>
 );
 

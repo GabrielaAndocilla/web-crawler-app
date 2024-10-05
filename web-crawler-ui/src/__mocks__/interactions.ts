@@ -1,4 +1,4 @@
-import { InteractionMetric } from "../../../models/InteractionMetrics";
+import { InteractionMetric } from "../models/InteractionMetrics";
 
 export const interactions : InteractionMetric = {
   pageMetrics: [

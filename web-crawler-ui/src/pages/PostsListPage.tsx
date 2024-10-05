@@ -9,7 +9,7 @@ import { Post } from '../models/Post';
 import { UserInteraction } from '../models/UserInteraction';
 import { MetricsSections } from '../sections/MetricsSections';
 
-const PostList = () => {
+const PostListPage = () => {
   const [page, setPage] = useState<number>(1);
   const [filters, setFilters] = useState<{ limit?: string; type?: string }>({});
   const { data, isFetching: isFetchingPosts } = usePost(page, filters);
@@ -50,6 +50,7 @@ const PostList = () => {
           <ul className="divide-y divide-gray-100">
             {posts.map(({ id, title, points, quantityOfComments }: Post) => (
               <ListElement
+                data-testid={`post_element_${id}`}
                 key={`post_${id}`}
                 title={`${id}. ${title}`}
                 subtitle={`points: ${points} | comments: ${quantityOfComments}`}
@@ -73,4 +74,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default PostListPage;

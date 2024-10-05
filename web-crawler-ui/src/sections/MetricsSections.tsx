@@ -29,6 +29,8 @@ export const MetricsSections = () => {
               {metrics?.pageMetrics.map(
                 ({ page_number, quantity }: PageMetrics) => (
                   <ListElement
+                    data-testid={`page_metric_${page_number}`}
+                    key={`page_metric_${page_number}`}
                     subtitle={`# of times that Page ${page_number} has been visited : ${quantity}`}
                   />
                 )
@@ -38,6 +40,8 @@ export const MetricsSections = () => {
               {metrics?.limitWordMetrics.map(
                 ({ title_words_limit, quantity }: LimitWordMetrics) => (
                   <ListElement
+                    data-testid={`title_metric_${title_words_limit}`}
+                    key={`title_metric_${title_words_limit}`}
                     subtitle={`# of times filter by ${title_words_limit} words in title has been used: ${quantity}`}
                   />
                 )
@@ -47,6 +51,8 @@ export const MetricsSections = () => {
               {metrics?.typeMetrics.map(
                 ({ filter_type, quantity }: FilterTypeMetrics) => (
                   <ListElement
+                  data-testid={`filter_metric_${filter_type}`}
+                    key={`filter_metric_${filter_type}`}
                     subtitle={`# of times filter type ${filter_type} has been used: ${quantity}`}
                   />
                 )
