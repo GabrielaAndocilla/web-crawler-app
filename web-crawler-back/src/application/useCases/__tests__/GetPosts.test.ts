@@ -28,7 +28,7 @@ describe('Get Post', () => {
   });
 
   describe('should filter -- type: lessThan', () => {
-    it('should filter for limit title words - 9 words', () => {
+    it('should filter for limit title words - 9 words and order by points', () => {
       const posts = getPost.execute(postMocks, {
         type: 'lessThan',
         limit: '9',
@@ -64,7 +64,7 @@ describe('Get Post', () => {
   });
 
   describe('should filter -- type: MoreThan', () => {
-    it('should filter for limit title words - 2 words', () => {
+    it('should filter for limit title words - 2 words and order by number of comments', () => {
       const posts = getPost.execute(postMocks, {
         type: 'moreThan',
         limit: '2',

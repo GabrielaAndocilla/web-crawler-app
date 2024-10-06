@@ -6,6 +6,10 @@ The purpose of this app is to display news from an [external web](https://news.y
 
 Additionally, the app tracks user interactions. Every time you choose a word limit and a filter type to filter post titles, the app records those inputs. It also tracks page navigation. For example, if you move to page 2, the tracker will record this action. One important condition is that the filters only work when used together.
 
+The filters will show the data based on the criteria:
+- If the filter type is **more than** it will be ordered by the number of comments in ASC way.
+- If the filter type is **less than or equal** it will be ordered by points in ASC way.
+
 To help visualize this data, we’ve added a section called Application Metrics. This section updates automatically based on user behavior.
 
 You could check the deployed app : https://web-crawler-app.daikuroneko.com/

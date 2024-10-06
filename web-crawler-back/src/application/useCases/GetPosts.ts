@@ -4,7 +4,7 @@ export class GetPosts {
 
   constructor() {}
 
-  private filterTitleTypeByNumberOfWords(title:string, type: 'lessThan'| 'moreThan', limit:string): boolean {
+  private filterTitleByNumberOfWords(title:string, type: 'lessThan'| 'moreThan', limit:string): boolean {
     if (!title) return false;
     const cleanTitle = title.replace(/[^a-zA-Z0-9\s]/g, '').trim();
     return {
@@ -27,7 +27,7 @@ export class GetPosts {
   execute(posts:Post[], queryParams:{type?:'lessThan'| 'moreThan',limit?:string}): Post[] {
     const {type, limit} = queryParams
     if (!type && !limit) return posts
-    return posts.filter(({ title }) =>this.filterTitleTypeByNumberOfWords(title!,type!, limit!))
+    return posts.filter(({ title }) =>this.filterTitleByNumberOfWords(title!,type!, limit!))
     .sort((post, newPost) => this.orderAscendent(type!,post,newPost))
   }
 }
